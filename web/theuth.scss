@@ -1,0 +1,32 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+$breadcrumb-divider: quote(">");
+
+body {
+}
+
+article.extract {
+
+    .header {
+        @extend .jumbotron;
+        .author {
+
+        }
+        .notion {
+
+        }
+    }
+
+    .source {
+        &:before {
+            content: "—";
+        }
+        text-align: right;
+        .person {
+            .lastName {
+                font-variant: small-caps;
+            }}}}
+
+footer {
+    @extend .text-muted;
+}
