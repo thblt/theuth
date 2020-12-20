@@ -1,4 +1,6 @@
-DROP TABLE posts;
-DROP TABLE authors;
 DROP TABLE sources;
-DROP TABLE sources_authors;
+DROP TABLE texts;
+DROP TABLE authors;
+DROP TABLE users;
+-- DROP TABLE sources;
+-- DROP TABLE sources_authors;

@@ -1,0 +1,65 @@
+#+TITLE: Theuth API
+
+Theuth machine interface is a REST API, served at =/api/= with the following endpoints:
+
+#+begin_warning
+  L'API theuth est encore en beta et sujette à modification.
+#+end_warning
+
+* Interface de consultation
+
+** =/categories/philo/=
+
+Retourne la liste des notions du programme de philosophie.  Chaque entrée contient:
+
+ - =id= :: =l'identifiant machine (ASCII, lisible par les humains) (par exemple, =liberte=, =etat=).
+ - =name= :: le nom de la notion sans déterminant ("liberté", "État")
+ - =theName= :: le nom de la notion avec déterminant ("la liberté", "l'État")
+ - =techno= :: vrai si la notion apparaît aussi au programme des séries technologiques.
+
+** =/categories/hlp/=
+
+#+begin_info
+  Theuth appelle "semestres" les semestres de HLP, et "parties" les trois sous-entrées de chaque semestre.
+
+  Les semestres /et/ les parties sont des entrées de classification.
+#+end_info
+
+Retourne la liste des parties du programme de HLP.  Chaque entrée contient:
+
+ - =id= :: =l'identifiant machine (ASCII, lisible par les humains) (par exemple, =parole-pouvoirs=).
+ - =name= :: le nom de la notion sans déterminant ("pouvoirs de la parole")
+ - =theName= :: le nom de la notion avec déterminant ("les pouvoirs de la parole")
+ - =parties= :: s'il s'agit d'un semestre, les parties de ce semestre, sinon NULL.
+
+** =/text/:id/=
+
+Renvoie un texte par son identifiant numérique.  La valeur de retour contient:
+
+ - =title= :: le titre du texte.
+
+** =/texts/search/=
+
+Recherche de textes.  Accepte les arguments (GET) suivants:
+
+ - =by= :: une liste d'identifiants d'auteurs séparés par des virgules.
+ - =notions= :: une liste de notions séparées par des virgules.
+ - =hlp= :: une liste de parties du programme de hlp séparées par des virgules.
+
+Renvoie une liste d'objets description de texte (comme un texte, sans le corps)
+
+** =/texts/search/=
+
+* Interface d'édition (POST)
+
+** =/auth/login/=
+
+Démarre une session utilisateur.  Reçoit un identifiant et un mot de passe, renvoie un identifiant de session.
+
+** =/auth/logout/=
+
+Termine la session.  Renvoie 200.
+
+** =/auth/ping/=
+
+Opération vide pour maintenir la session ouverte. Renvoie OK ou Disconnected.

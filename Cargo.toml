@@ -11,3 +11,4 @@ diesel = { version = "1.4.5", features = ["sqlite"] }
 handlebars = "3.2.1"
 warp = "0.2.3"
 tokio = { version = "0.2", features = ["full"] }
+dotenv = "0.15.0"

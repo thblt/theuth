@@ -1,84 +1,57 @@
 table! {
     authors (id) {
-        id -> Nullable<Integer>,
-        slug -> Text,
-        name_pre -> Nullable<Text>,
-        name_first -> Nullable<Text>,
-        name_von -> Nullable<Text>,
-        name_last -> Nullable<Text>,
-        name_suff -> Nullable<Text>,
-        birth -> Nullable<Integer>,
-        death -> Nullable<Integer>,
-        au_programme -> Nullable<Integer>,
-    }
-}
-
-table! {
-    notions_philo (id) {
-        id -> Nullable<Integer>,
-        slug -> Text,
-        name -> Text,
-        le_name -> Text,
-        techno -> Nullable<Integer>,
-    }
-}
-
-table! {
-    parties_hlp (id) {
-        id -> Nullable<Integer>,
-        slug -> Text,
-        semestre -> Integer,
-        partie -> Integer,
-        name -> Text,
-    }
-}
-
-table! {
-    reperes_philo (id) {
-        id -> Nullable<Integer>,
-        slug -> Text,
-        name -> Text,
+        id -> Int4,
+        slug -> Varchar,
+        name_pre -> Nullable<Varchar>,
+        name_first -> Nullable<Varchar>,
+        name_von -> Nullable<Varchar>,
+        name_last -> Nullable<Varchar>,
+        name_suff -> Nullable<Varchar>,
+        birth -> Nullable<Int4>,
+        death -> Nullable<Int4>,
+        official -> Nullable<Bool>,
     }
 }
 
 table! {
     sources (id) {
-        id -> Nullable<Integer>,
-        author -> Nullable<Integer>,
+        id -> Int4,
+        author -> Int4,
         title -> Text,
-        containing_title -> Nullable<Text>,
+        date -> Nullable<Int4>,
     }
 }
 
 table! {
     texts (id) {
-        id -> Nullable<Integer>,
-        slug -> Text,
-        title -> Text,
+        id -> Int4,
+        slug -> Varchar,
+        title -> Varchar,
+        intro -> Nullable<Text>,
         body -> Text,
-        forced_author -> Nullable<Integer>,
+        pseudo_author -> Nullable<Int4>,
+        tsource -> Int4,
+        translator -> Nullable<Int4>,
+        publisher -> Nullable<Text>,
+        date -> Nullable<Int4>,
     }
 }
 
 table! {
-    texts_notions (link_id) {
-        link_id -> Nullable<Integer>,
-        text_id -> Nullable<Integer>,
-        notion_id -> Nullable<Integer>,
+    users (id) {
+        id -> Int4,
+        email -> Text,
+        display_name -> Nullable<Text>,
+        password -> Text,
+        password_is_temporary -> Nullable<Bool>,
     }
 }
 
 joinable!(sources -> authors (author));
-joinable!(texts -> authors (forced_author));
-joinable!(texts_notions -> notions_philo (notion_id));
-joinable!(texts_notions -> texts (text_id));
 
 allow_tables_to_appear_in_same_query!(
     authors,
-    notions_philo,
-    parties_hlp,
-    reperes_philo,
     sources,
     texts,
-    texts_notions,
+    users,
 );
