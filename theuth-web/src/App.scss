@@ -1,14 +1,20 @@
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 
-$breadcrumb-divider: quote(">");
+body
+{
+    @extend .bg-light;
+    #root {
+        nav#main-nav {
 
-body {
+        }
+    }
+
 }
 
 article.extract {
 
     .header {
-        @extend .jumbotron;
+        // @extend .jumbotron;
         .author {
 
         }
@@ -28,5 +34,5 @@ article.extract {
             }}}}
 
 footer {
-    @extend .text-muted;
+    // @extend .text-muted;
 }

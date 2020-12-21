@@ -1,16 +1,26 @@
-use crate::schema::texts;
+use serde::{Serialize, Deserialize};
 
-#[derive(Queryable)]
-pub struct Texte {
+#[derive(Queryable, Serialize)]
+pub struct ProgNotion {
     pub id: i32,
     pub slug: String,
-    pub body: String,
-    pub published: bool,
+    pub name: String,
+    pub le_name: String,
+    pub techno: bool,
 }
 
-#[derive(Insertable)]
-#[table_name="texts"]
-pub struct NewTexte<'a> {
-    pub title: &'a str,
-    pub body: &'a str,
+#[derive(Queryable, Serialize)]
+pub struct ProgRepere {
+    pub id: i32,
+    pub slug: String,
+    pub name: String,
+}
+
+#[derive(Queryable, Serialize)]
+pub struct ProgHLP {
+    pub id: i32,
+    pub slug: String,
+    pub name: String,
+    pub semestre: i32,
+    pub partie: Option<i32>
 }

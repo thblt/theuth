@@ -7,8 +7,9 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-diesel = { version = "1.4.5", features = ["sqlite"] }
+diesel = { version = "1.4.5", features = ["postgres"] }
 handlebars = "3.2.1"
 warp = "0.2.3"
 tokio = { version = "0.2", features = ["full"] }
 dotenv = "0.15.0"
+serde = { version = "1.0.118", features = ["derive"] }
