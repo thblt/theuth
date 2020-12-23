@@ -21,13 +21,19 @@ import { LinkContainer } from "react-router-bootstrap";
 const queryClient = new QueryClient();
 
 function Home() {
+  const slogans = [
+    "Le manuel du&nbsp;peuple, par&nbsp;le&nbsp;peuple, pour&nbsp;le&nbsp;peuple.",
+    "Les manuels n'ont fait que décrire le monde, il s'agit maintenant de le changer.",
+  ];
+
   return (
     <div>
       <Jumbotron>
-        <h1>
-          Le manuel du&nbsp;peuple, par&nbsp;le&nbsp;peuple,
-          pour&nbsp;le&nbsp;peuple.
-        </h1>
+        <h1
+          dangerouslySetInnerHTML={{
+            __html: slogans[2],
+          }}
+        ></h1>
         <p class="lead">
           Philosopher.fr est un recueil de textes de philosophie libre, gratuit
           et collaboratif, organisé selon les programme du cycle terminal de
@@ -120,6 +126,7 @@ function Home() {
             </ListGroup.Item>
             <ListGroup.Item action>Le bonheur</ListGroup.Item>
           </ListGroup>
+          14 textes trouvés. Vous pouvez ajouter le vôtre!
         </Col>
       </Row>
     </div>

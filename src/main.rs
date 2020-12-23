@@ -10,8 +10,8 @@ use warp::Filter;
 
 pub mod models;
 
-pub fn establish_connection() -> PgConnection {
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+pub fn connect_db() -> PgConnection {
+    // @FIXME Don't crash if PgSql is down.
     PgConnection::establish(&database_url).expect(&format!("Error connecting to {}", database_url))
 }
 
@@ -57,37 +57,49 @@ pub async fn prog_hlp_responder(
 async fn main() {
     dotenv().ok();
 
-    let db_connect = warp::any().map(move || establish_connection());
+    // @TODO Test DB connection before starting up.
+
+    let connect_db_filter = warp::any().map(move || connect_db());
 
     let api_root = warp::path!("api" / "v0");
 
     let prog_philo = warp::path!("programmes" / "notions")
         .and(warp::path::end())
-        .and(db_connect.clone())
+        .and(connect_db_filter.clone())
         .and_then(&prog_notions_responder);
 
     let prog_reperes = warp::path!("programmes" / "reperes")
         .and(warp::path::end())
-        .and(db_connect.clone())
+        .and(connect_db_filter.clone())
         .and_then(&prog_reperes_responder);
 
     let prog_hlp = warp::path!("programmes" / "hlp")
         .and(warp::path::end())
-        .and(db_connect.clone())
+        .and(connect_db_filter.clone())
         .and_then(&prog_hlp_responder);
 
-    let text = warp::path!("texte" / u32)
-        .and(warp::path::end())
-        .map(|_a| "Unimplemented!");
-
-    let collections = warp::path!("collections")
+    let texts = warp::path!("textes")
         .and(warp::path::end())
         .map(|| "Unimplemented!");
 
-    let routes = warp::get().and(prog_philo)
+    let text = warp::path!("textes" / u32)
+        .and(warp::path::end())
+        .map(|_a| "Unimplemented!");
+
+    let new_text = warp::path!("textes")
+        .and(warp::path::end())
+        .map(|| "Unimplemented!");
+
+    let update_text = warp::path!("textes")
+        .and(warp::path::end())
+        .map(|| "Unimplemented!");
+
+    let get_routes = warp::get().and(prog_philo)
         .or(prog_hlp)
         .or(prog_reperes)
-        .or(text).or(collections);
+        .or(text).or(text);
 
-    warp::serve(routes).run(([127, 0, 0, 1], 3030)).await;
+    let post_routes = warp::post().and(new_text);
+
+    warp::serve(get_routes).run(([127, 0, 0, 1], 3030)).await;
 }
