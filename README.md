@@ -1,7 +1,7 @@
-# Theuth: logiciel serveur pour Xxx, le manuel coopératif de philosophie
+# Theuth: logiciel serveur pour Philosopher.fr, un manuel coopératif de philosophie
 
 Theuth est le logiciel qui anime
-[xxx.fr](https://xxx.fr), un manuel coopératif de
+[philosopher.fr](https://philosopher.fr), un manuel coopératif de
 textes philosophiques à destination des enseignant·e·s (surtout) et
 des élèves (un peu) de l'enseignement secondaire français.
 
