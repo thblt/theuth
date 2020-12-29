@@ -4,7 +4,7 @@
 -- première et terminale).
 
 CREATE TABLE prog_notions (
-  id SERIAL UNIQUE PRIMARY KEY ,
+  id SERIAL UNIQUE PRIMARY KEY,
   slug TEXT UNIQUE NOT NULL,
   name TEXT NOT NULL,
   le_name TEXT NOT NULL,

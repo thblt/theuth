@@ -1,4 +1,4 @@
 -- This file should undo anything in `up.sql`
-DROP TABLE notions_philo;
-DROP TABLE parties_hlp;
-DROP TABLE reperes_philo;
+DROP TABLE prog_notions;
+DROP TABLE prog_hlp;
+DROP TABLE prog_reperes;

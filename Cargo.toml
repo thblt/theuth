@@ -4,12 +4,21 @@ version = "0.1.0"
 authors = ["Thibault Polge <thibault@thb.lt>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+base64 = "0.13.0"
 diesel = { version = "1.4.5", features = ["postgres"] }
-handlebars = "3.2.1"
-warp = "0.2.3"
-tokio = { version = "0.2", features = ["full"] }
 dotenv = "0.15.0"
+form_urlencoded = "1.0.0"
+getrandom = "0.2.0"
+handlebars = "3.5.1"
+lettre = "0.9.5"
+lettre_email = "0.9.4"
+pulldown-cmark = "0.8.0"
+rand = "0.7.3"
+rust-argon2 = "0.8.3"
 serde = { version = "1.0.118", features = ["derive"] }
+serde_json = "1.0.61"
+tokio = { version = "0.2", features = ["full"] }
+urlencoding = "1.1.1"
+validator = "0.12.0"
+warp = "0.2.3"
